@@ -1,0 +1,64 @@
+body {
+  font-family: "Inter", sans-serif;
+}
+
+.register-card {
+  max-width: 460px;
+}
+
+.tab-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.success-text {
+  color: #16a34a;
+  min-height: 18px;
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.btn-nav-login {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+@media (max-width: 900px) {
+  .header-content {
+    gap: 12px;
+  }
+
+  .search-box {
+    width: 220px;
+  }
+}
+
+@media (max-width: 640px) {
+  header {
+    padding: 12px 18px;
+  }
+
+  .header-content {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .search-box {
+    width: 100%;
+    order: 3;
+  }
+
+  footer {
+    padding: 40px 20px 20px;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
