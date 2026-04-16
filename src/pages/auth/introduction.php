@@ -23,8 +23,11 @@
            <a href="#contact" class="nav-item">Liên hệ</a>
         </div>
         <div class="header-right" style="width: 185px; display: flex; justify-content: flex-end; align-items: center; gap: 16px;">
-            <a href="../../pages/auth/cart.php"> <i class="fa-solid fa-cart-shopping"></i></a>
-            <a href="../../pages/auth/login.php"> <i class="fa-regular fa-user"></i></a>
+            <div class="cart-icon">
+                <a href="../../pages/auth/cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
+                <span id="cart-count">0</span>
+            </div>
+            <a href="../../pages/auth/login.php"><i class="fa-regular fa-user"></i></a>
         </div>
     </header>
     <section class="introbanner">
