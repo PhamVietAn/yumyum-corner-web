@@ -146,15 +146,15 @@
                     <li><a href="../auth/dashboard.php">Trang chủ</a></li>
                     <li><a href="../auth/products.php">Sản phẩm</a></li>
                     <li><a href="../auth/introduction.php">Về chúng tôi</a></li>
-                    <li><a href="../auth/introduction.php">Liên hệ</a></li>
+                    <li><a href="#contact">Liên hệ</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h3>Chính sách</h3>
                 <ul>
-                    <li><a href="#">Chính sách đổi trả</a></li>
-                    <li><a href="#">Chính sách vận chuyển</a></li>
-                    <li><a href="#">Chính sách bảo mật</a></li>
+                    <li><a href="chinh-sach.php#doi-tra">Chính sách đổi trả</a></li>
+                    <li><a href="chinh-sach.php#van-chuyen">Chính sách vận chuyển</a></li>
+                    <li><a href="chinh-sach.php#bao-mat">Chính sách bảo mật</a></li>
                 </ul>
             </div>
             <div class="footer-col" id="contact">
