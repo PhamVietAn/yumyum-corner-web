@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="icon" type="image/jpeg" href="/logo.jpg" />
+    <link rel="icon" type="image/jpeg" href="/public/logo.jpg" />
     <link href="/public/tailwind.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100 text-black font-[Inter] grid grid-cols-[256px_1fr]">
