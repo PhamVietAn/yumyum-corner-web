@@ -104,5 +104,46 @@
     <a href="dashboard.php" class="back-home">Về Trang Chủ</a>
 </div>
 
+<script>
+    (function ensureFreshDataAfterNavigation() {
+        const reloadFlagKey = "__forceReloadOnce:" + window.location.pathname + window.location.search;
+        const navigationEntries =
+            typeof performance.getEntriesByType === "function"
+                ? performance.getEntriesByType("navigation")
+                : [];
+        const navigationType = navigationEntries && navigationEntries[0] ? navigationEntries[0].type : "";
+
+        const hasInternalReferrer = (function () {
+            if (!document.referrer) return false;
+            try {
+                return new URL(document.referrer).origin === window.location.origin;
+            } catch (_error) {
+                return false;
+            }
+        })();
+
+        if (hasInternalReferrer && navigationType === "navigate") {
+            if (sessionStorage.getItem(reloadFlagKey) !== "1") {
+                sessionStorage.setItem(reloadFlagKey, "1");
+                window.location.reload();
+                return;
+            }
+            sessionStorage.removeItem(reloadFlagKey);
+        }
+
+        window.addEventListener("pageshow", function (event) {
+            const navEntries =
+                typeof performance.getEntriesByType === "function"
+                    ? performance.getEntriesByType("navigation")
+                    : [];
+            const navType = navEntries && navEntries[0] ? navEntries[0].type : "";
+
+            if (event.persisted || navType === "back_forward") {
+                window.location.reload();
+            }
+        });
+    })();
+</script>
+
 </body>
 </html>
