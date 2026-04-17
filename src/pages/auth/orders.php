@@ -90,9 +90,9 @@
             <div class="footer-col">
                 <h3>Chính sách</h3>
                 <ul>
-                    <li><a href="chinh-sach.php#doi-tra">Chính sách đổi trả</a></li>
-                    <li><a href="chinh-sach.php#van-chuyen">Chính sách vận chuyển</a></li>
-                    <li><a href="chinh-sach.php#bao-mat">Chính sách bảo mật</a></li>
+                    <li><a href="../auth/chinh-sach.php#doi-tra">Chính sách đổi trả</a></li>
+                    <li><a href="../auth/chinh-sach.php#van-chuyen">Chính sách vận chuyển</a></li>
+                    <li><a href="../auth/chinh-sach.php#bao-mat">Chính sách bảo mật</a></li>
                 </ul>
             </div>
       <div class="footer-col" id="contact">

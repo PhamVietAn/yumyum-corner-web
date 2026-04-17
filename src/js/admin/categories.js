@@ -1,3 +1,5 @@
+ensureFreshDataAfterNavigation();
+
 const ITEMS_PER_PAGE = 10;
 const FALLBACK_IMAGE = "https://via.placeholder.com/80";
 
@@ -38,6 +40,26 @@ function getFilteredCategories() {
   return categoriesState.filter((category) =>
     String(category.name || "").toLowerCase().includes(keyword),
   );
+}
+
+function ensureFreshDataAfterNavigation() {
+  if (window.__forceReloadOnNavigationAttached) {
+    return;
+  }
+
+  window.__forceReloadOnNavigationAttached = true;
+
+  window.addEventListener("pageshow", (event) => {
+    const navigationEntries =
+      typeof performance.getEntriesByType === "function"
+        ? performance.getEntriesByType("navigation")
+        : [];
+    const navigationType = navigationEntries?.[0]?.type;
+
+    if (event.persisted || navigationType === "back_forward") {
+      window.location.reload();
+    }
+  });
 }
 
 function getPageCount(totalItems) {

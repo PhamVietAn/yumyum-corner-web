@@ -1,3 +1,5 @@
+ensureFreshDataAfterNavigation();
+
 document.addEventListener("DOMContentLoaded", async () => {
   const headerRight = document.querySelector(".header-right");
   if (!headerRight) return;
@@ -142,4 +144,24 @@ function escapeHtml(input) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+}
+
+function ensureFreshDataAfterNavigation() {
+  if (window.__forceReloadOnNavigationAttached) {
+    return;
+  }
+
+  window.__forceReloadOnNavigationAttached = true;
+
+  window.addEventListener("pageshow", (event) => {
+    const navigationEntries =
+      typeof performance.getEntriesByType === "function"
+        ? performance.getEntriesByType("navigation")
+        : [];
+    const navigationType = navigationEntries?.[0]?.type;
+
+    if (event.persisted || navigationType === "back_forward") {
+      window.location.reload();
+    }
+  });
 }

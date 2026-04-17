@@ -1,3 +1,5 @@
+ensureFreshDataAfterNavigation();
+
 document.addEventListener("DOMContentLoaded", () => {
 	const registerForm = document.getElementById("registerForm");
 	const nameInput = document.getElementById("name");
@@ -242,3 +244,23 @@ document.addEventListener("DOMContentLoaded", () => {
 		return payload;
 	}
 });
+
+function ensureFreshDataAfterNavigation() {
+	if (window.__forceReloadOnNavigationAttached) {
+		return;
+	}
+
+	window.__forceReloadOnNavigationAttached = true;
+
+	window.addEventListener("pageshow", (event) => {
+		const navigationEntries =
+			typeof performance.getEntriesByType === "function"
+				? performance.getEntriesByType("navigation")
+				: [];
+		const navigationType = navigationEntries?.[0]?.type;
+
+		if (event.persisted || navigationType === "back_forward") {
+			window.location.reload();
+		}
+	});
+}

@@ -1,3 +1,5 @@
+ensureFreshDataAfterNavigation();
+
 const ChartLib = window.Chart;
 
 let revenueChart;
@@ -37,6 +39,26 @@ function normalizeItem(item) {
     unitPrice: Number.isFinite(price) ? price : 0,
     lineRevenue: (Number.isFinite(price) ? price : 0) * (Number.isFinite(quantity) ? quantity : 0),
   };
+}
+
+function ensureFreshDataAfterNavigation() {
+  if (window.__forceReloadOnNavigationAttached) {
+    return;
+  }
+
+  window.__forceReloadOnNavigationAttached = true;
+
+  window.addEventListener("pageshow", (event) => {
+    const navigationEntries =
+      typeof performance.getEntriesByType === "function"
+        ? performance.getEntriesByType("navigation")
+        : [];
+    const navigationType = navigationEntries?.[0]?.type;
+
+    if (event.persisted || navigationType === "back_forward") {
+      window.location.reload();
+    }
+  });
 }
 
 function normalizeOrder(order) {

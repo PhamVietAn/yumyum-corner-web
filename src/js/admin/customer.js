@@ -1,3 +1,5 @@
+ensureFreshDataAfterNavigation();
+
 const ITEMS_PER_PAGE = 10;
 
 const STATUS_TEXT = {
@@ -45,6 +47,26 @@ function formatDate(dateString) {
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
+  });
+}
+
+function ensureFreshDataAfterNavigation() {
+  if (window.__forceReloadOnNavigationAttached) {
+    return;
+  }
+
+  window.__forceReloadOnNavigationAttached = true;
+
+  window.addEventListener("pageshow", (event) => {
+    const navigationEntries =
+      typeof performance.getEntriesByType === "function"
+        ? performance.getEntriesByType("navigation")
+        : [];
+    const navigationType = navigationEntries?.[0]?.type;
+
+    if (event.persisted || navigationType === "back_forward") {
+      window.location.reload();
+    }
   });
 }
 
